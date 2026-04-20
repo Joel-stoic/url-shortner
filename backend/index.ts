@@ -166,7 +166,7 @@ app.get('/:code', async (req: Request, res: Response) => {
 })
 
 // --------------------
-app.listen(3000, async() => {
+app.listen(3000, '0.0.0.0',async() => {
   await connectRedis()
   console.log(`🚀 Server running on ${BASE_URL}`)
 })
