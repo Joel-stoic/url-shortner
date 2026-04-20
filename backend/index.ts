@@ -3,7 +3,7 @@ import express from 'express'
 import type { Request, Response } from 'express'
 import { PrismaClient } from '@prisma/client'
 import { PrismaPg } from '@prisma/adapter-pg'
-import { redisClient } from './config/redis.js'
+import { connectRedis, redisClient } from './config/redis.js'
 import { nanoid } from 'nanoid'
 
 const app = express()
@@ -166,6 +166,7 @@ app.get('/:code', async (req: Request, res: Response) => {
 })
 
 // --------------------
-app.listen(3000, () => {
+app.listen(3000, async() => {
+  await connectRedis()
   console.log(`🚀 Server running on ${BASE_URL}`)
 })
