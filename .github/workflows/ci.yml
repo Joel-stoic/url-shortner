@@ -11,10 +11,10 @@ jobs:
 
     defaults:
       run:
-        working-directory: ./backend   # 👈 your backend folder
+        working-directory: ./backend   # your backend folder
 
     steps:
-      - name: Get code
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Setup Node
@@ -25,6 +25,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Generate Prisma Client   # 🔥 IMPORTANT FIX
+        run: npx prisma generate
+
+      # Optional (enable later when you add tests)
       # - name: Run tests
       #   run: npm test
 
